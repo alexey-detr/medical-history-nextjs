@@ -17,7 +17,7 @@ class Ssn extends React.Component {
         Please fill in your social security number to proceed
       </div>
       <input type='text' value={this.props.value}/>
-      <button onClick={this.onNext}>Confirm</button>
+      <button className={cardStyles.actionButton} onClick={this.onNext}>Confirm</button>
     </div>;
   }
 }

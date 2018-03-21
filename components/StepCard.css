@@ -1,6 +1,6 @@
 .card {
-    padding: 20px;
-    box-shadow: 0 0 10px darkgray;
+    padding: 24px;
+    box-shadow: 0 0 10px rgba(43, 43, 43, 0.43);
     border-radius: 6px;
     display: inline-block;
     background-color: #fafafa;
@@ -25,6 +25,14 @@
     margin-bottom: 10px;
 }
 
-.action {
-
+.actionButton {
+    font-size: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 4px 16px;
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    user-select: none;
+    height: 42px;
 }

@@ -1,3 +1,8 @@
 export const STEP_SSN = 'STEP_SSN';
 export const STEP_TEMPERATURE = 'STEP_TEMPERATURE';
+export const STEP_FEVER = 'STEP_FEVER';
+export const STEP_SYMPTOMS1 = 'STEP_SYMPTOMS1';
+export const STEP_SYMPTOMS2 = 'STEP_SYMPTOMS2';
+export const STEP_TRAVEL = 'STEP_TRAVEL';
+export const STEP_TRAVEL_DETAILS = 'STEP_TRAVEL_DETAILS';
 export const STEP_THANKS = 'STEP_THANKS';
