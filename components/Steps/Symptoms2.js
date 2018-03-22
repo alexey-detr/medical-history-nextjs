@@ -1,6 +1,5 @@
 import React from 'react';
 import StepCard from '../StepCard';
-import { connect } from 'react-redux';
 import { SET_STEP } from '../../constants/actions';
 import { STEP_TRAVEL } from '../../constants/steps';
 
@@ -21,20 +20,18 @@ class Symptoms1 extends React.Component {
   }
 
   onNext = () => {
-    this.props.dispatch({type: SET_STEP, payload: {step: STEP_TRAVEL}});
+    this.props.dispatch({ type: SET_STEP, payload: { step: STEP_TRAVEL } });
+    this.props.onNext();
   };
 
   render() {
     return <div>
-      <div className={cardStyles.label}>
-        Do you have any of the following?
-      </div>
       <div>
         {this.state.symptoms.map((value, i) =>
           <label key={i} className={mainStyles.checkboxLabel}>
-            <input type='checkbox' name='symptoms2' value={value} />
+            <input onChange={this.props.onChange} type='checkbox' name='symptoms2' value={value}/>
             <div>{value}</div>
-          </label>
+          </label>,
         )}
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
@@ -42,8 +39,4 @@ class Symptoms1 extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-});
-
-export default connect(null, mapDispatchToProps)(StepCard(Symptoms1));
+export default StepCard(Symptoms1);

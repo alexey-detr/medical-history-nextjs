@@ -21,7 +21,7 @@ class Main extends React.Component {
         <link rel='stylesheet' href='/_next/static/style.css'/>
       </Head>
       <div className={styles.mainContainer}>
-          <Navigator/>
+        <Navigator/>
       </div>
     </div>;
   }

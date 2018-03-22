@@ -19,33 +19,26 @@ class Travel extends React.Component {
         'Yes',
         'No',
       ],
-      answer: null,
     };
   }
 
   onNext = () => {
-    if (this.state.answer === 'Yes') {
-      this.props.dispatch({type: SET_STEP, payload: {step: STEP_TRAVEL_DETAILS}});
+    if (this.props.answer === 'Yes') {
+      this.props.dispatch({ type: SET_STEP, payload: { step: STEP_TRAVEL_DETAILS } });
     } else {
-      this.props.dispatch({type: SET_STEP, payload: {step: STEP_THANKS}});
+      this.props.dispatch({ type: SET_STEP, payload: { step: STEP_THANKS } });
     }
-  };
-
-  onChangeAnswer = (event) => {
-    this.setState({...this.state, answer: event.target.value});
+    this.props.onNext();
   };
 
   render() {
     return <div>
-      <div className={cardStyles.label}>
-        Have you recently traveled abroad?
-      </div>
       <div>
         {this.state.choices.map((value, i) =>
           <label key={i} className={mainStyles.radioLabel}>
-            <input type='radio' name='travel' onChange={this.onChangeAnswer} value={value} />
+            <input type='radio' name='travel' onChange={this.props.onChange} value={value}/>
             <div>{value}</div>
-          </label>
+          </label>,
         )}
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
@@ -53,8 +46,4 @@ class Travel extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-});
-
-export default connect(null, mapDispatchToProps)(StepCard(Travel));
+export default StepCard(Travel);

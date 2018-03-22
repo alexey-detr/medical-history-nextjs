@@ -20,31 +20,31 @@ import {
 } from '../constants/steps';
 
 class Navigator extends React.Component {
-  static getStep(code) {
+  getStep = (code) => {
     switch (code) {
       case STEP_SSN:
-        return <Enter title='SSN'/>;
+        return <Enter code='ssn' title='SSN' label='Please fill in your social security number to proceed'/>;
       case STEP_TEMPERATURE:
-        return <Temperature title='Temperature'/>;
+        return <Temperature code='temperature' title='Temperature' label='What was the last measured temperature?'/>;
       case STEP_FEVER:
-        return <Fever title='Fever'/>;
+        return <Fever code='fever' title='Fever' label='How long have you had a fever?'/>;
       case STEP_SYMPTOMS1:
-        return <Symptoms1 title='Symptoms'/>;
+        return <Symptoms1 code='symptoms1' title='Symptoms' label='Do you have any of the following?'/>;
       case STEP_SYMPTOMS2:
-        return <Symptoms2 title='More symptoms'/>;
+        return <Symptoms2 code='symptoms2' title='More symptoms' label='Do you have any of the following?'/>;
       case STEP_TRAVEL:
-        return <Travel title='Travel'/>;
+        return <Travel code='travel' title='Travel' label='Have you recently traveled abroad?'/>;
       case STEP_TRAVEL_DETAILS:
-        return <TravelDetails title='Travel details'/>;
+        return <TravelDetails code='travelDetails' title='Travel details' label='Where did you travel?'/>;
       case STEP_THANKS:
-        return <Thanks title='Completed' value='ASD'/>;
+        return <Thanks title='Completed' label='Thank you!'/>;
       default:
         return null;
     }
-  }
+  };
 
   render() {
-    return Navigator.getStep(this.props.step);
+    return this.getStep(this.props.step);
   }
 }
 
@@ -54,4 +54,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navigator);
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigator);

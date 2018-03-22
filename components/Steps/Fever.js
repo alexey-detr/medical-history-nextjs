@@ -1,6 +1,5 @@
 import React from 'react';
 import StepCard from '../StepCard';
-import { connect } from 'react-redux';
 import { SET_STEP } from '../../constants/actions';
 import { STEP_SYMPTOMS1 } from '../../constants/steps';
 
@@ -19,17 +18,15 @@ class Fever extends React.Component {
   }
 
   onNext = () => {
-    this.props.dispatch({type: SET_STEP, payload: {step: STEP_SYMPTOMS1}});
+    this.props.dispatch({ type: SET_STEP, payload: { step: STEP_SYMPTOMS1 } });
+    this.props.onNext();
   };
 
   render() {
     return <div>
-      <div className={cardStyles.label}>
-        How long have you had a fever?
-      </div>
       <div>
-        <select>
-          {this.state.days.map((value, i) => <option key={i} value={value}>{value}</option>)}
+        <select onChange={this.props.onChange}>
+          {this.state.days.map((value, i) => <option key={i} value={value + ' days'}>{value} days</option>)}
         </select>
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
@@ -37,8 +34,4 @@ class Fever extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-});
-
-export default connect(null, mapDispatchToProps)(StepCard(Fever));
+export default StepCard(Fever);

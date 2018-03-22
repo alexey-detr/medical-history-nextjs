@@ -1,13 +1,9 @@
 import React from 'react';
 import StepCard from '../StepCard';
-import { connect } from 'react-redux';
 import { SET_STEP } from '../../constants/actions';
-import {
-  STEP_FEVER,
-  STEP_THANKS,
-} from '../../constants/steps';
+import { STEP_FEVER } from '../../constants/steps';
 
-import cardStyles from '../StepCard.css'
+import cardStyles from '../StepCard.css';
 
 class Temperature extends React.Component {
   constructor(props) {
@@ -22,17 +18,15 @@ class Temperature extends React.Component {
   }
 
   onNext = () => {
-    this.props.dispatch({type: SET_STEP, payload: {step: STEP_FEVER}});
+    this.props.dispatch({ type: SET_STEP, payload: { step: STEP_FEVER } });
+    this.props.onNext();
   };
 
   render() {
     return <div>
-      <div className={cardStyles.label}>
-        What was the last measured temperature.
-      </div>
       <div>
-        <select>
-          {this.state.temperatures.map((value, i) => <option key={i} value={value}>{value} °C</option>)}
+        <select onChange={this.props.onChange}>
+          {this.state.temperatures.map((value, i) => <option key={i} value={value + ' °C'}>{value} °C</option>)}
         </select>
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
@@ -40,8 +34,4 @@ class Temperature extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-});
-
-export default connect(null, mapDispatchToProps)(StepCard(Temperature));
+export default StepCard(Temperature);
