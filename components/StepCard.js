@@ -53,8 +53,8 @@ export default (QuestionComponent) => {
         <div className={styles.label}>
           {this.props.label}
         </div>
-        <div className={styles.content}>
-          <QuestionComponent {...this.props} onChange={this.onChange} onNext={this.onNext}/>
+        <div>
+          <QuestionComponent {...this.props} onChange={this.onChange} onRef={this.onRef} onNext={this.onNext}/>
         </div>
       </div>;
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import StepCard from '../StepCard';
 import { SET_STEP } from '../../constants/actions';
 import { STEP_FEVER } from '../../constants/steps';
+import { formatTemperature } from '../../utils';
 
 import cardStyles from '../StepCard.css';
 
@@ -12,6 +13,7 @@ class Temperature extends React.Component {
     for (let temperature = 35; temperature <= 42; temperature += 0.5) {
       temperatures.push(temperature);
     }
+    temperatures.push("Don't know");
     this.state = {
       temperatures,
     };
@@ -25,8 +27,13 @@ class Temperature extends React.Component {
   render() {
     return <div>
       <div>
-        <select onChange={this.props.onChange}>
-          {this.state.temperatures.map((value, i) => <option key={i} value={value + ' °C'}>{value} °C</option>)}
+        <select onChange={this.props.onChange} value={this.props.answer}>
+          {this.state.temperatures.map((value, i) => {
+            const temperatureString = formatTemperature(value);
+            return <option key={i} value={temperatureString}>
+              {temperatureString}
+            </option>;
+          })}
         </select>
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>

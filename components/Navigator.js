@@ -23,19 +23,19 @@ class Navigator extends React.Component {
   getStep = (code) => {
     switch (code) {
       case STEP_SSN:
-        return <Enter code='ssn' title='SSN' label='Please fill in your social security number to proceed'/>;
+        return <Enter code={code} title='SSN' label='Please fill in your social security number to proceed'/>;
       case STEP_TEMPERATURE:
-        return <Temperature code='temperature' title='Temperature' label='What was the last measured temperature?'/>;
+        return <Temperature code={code} title='Temperature' label='What was the last measured temperature?'/>;
       case STEP_FEVER:
-        return <Fever code='fever' title='Fever' label='How long have you had a fever?'/>;
+        return <Fever code={code} title='Fever' label='How long have you had a fever?'/>;
       case STEP_SYMPTOMS1:
-        return <Symptoms1 code='symptoms1' title='Symptoms' label='Do you have any of the following?'/>;
+        return <Symptoms1 code={code} title='Symptoms' label='Do you have any of the following?'/>;
       case STEP_SYMPTOMS2:
-        return <Symptoms2 code='symptoms2' title='More symptoms' label='Do you have any of the following?'/>;
+        return <Symptoms2 code={code} title='More symptoms' label='Do you have any of the following?'/>;
       case STEP_TRAVEL:
-        return <Travel code='travel' title='Travel' label='Have you recently traveled abroad?'/>;
+        return <Travel code={code} title='Travel' label='Have you recently traveled abroad?'/>;
       case STEP_TRAVEL_DETAILS:
-        return <TravelDetails code='travelDetails' title='Travel details' label='Where did you travel?'/>;
+        return <TravelDetails code={code} title='Travel details' label='Where did you travel?'/>;
       case STEP_THANKS:
         return <Thanks title='Completed' label='Thank you!'/>;
       default:

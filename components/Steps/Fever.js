@@ -4,6 +4,7 @@ import { SET_STEP } from '../../constants/actions';
 import { STEP_SYMPTOMS1 } from '../../constants/steps';
 
 import cardStyles from '../StepCard.css';
+import { formatDays } from '../../utils';
 
 class Fever extends React.Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class Fever extends React.Component {
     return <div>
       <div>
         <select onChange={this.props.onChange}>
-          {this.state.days.map((value, i) => <option key={i} value={value + ' days'}>{value} days</option>)}
+          {this.state.days.map((value, i) => {
+            const daysString = formatDays(value);
+            return <option key={i} value={daysString}>{daysString}</option>;
+          })}
         </select>
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>

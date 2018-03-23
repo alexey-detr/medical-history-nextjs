@@ -23,7 +23,7 @@
 
 .actionButton {
     font-size: 20px;
-    background-color: #f9f9f9;
+    background: linear-gradient(to bottom, #ffffff, #f1ede1);
     border-radius: 5px;
     padding: 4px 16px;
     display: block;
@@ -31,4 +31,9 @@
     width: 100%;
     user-select: none;
     height: 42px;
+}
+
+.errorMessage {
+    color: darkred;
+    margin-top: 5px;
 }

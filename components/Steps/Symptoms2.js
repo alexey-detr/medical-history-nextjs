@@ -29,7 +29,11 @@ class Symptoms1 extends React.Component {
       <div>
         {this.state.symptoms.map((value, i) =>
           <label key={i} className={mainStyles.checkboxLabel}>
-            <input onChange={this.props.onChange} type='checkbox' name='symptoms2' value={value}/>
+            <input onChange={this.props.onChange}
+                   type='checkbox'
+                   name='symptoms2'
+                   value={value}
+                   checked={this.props.answer.indexOf(value) !== -1}/>
             <div>{value}</div>
           </label>,
         )}

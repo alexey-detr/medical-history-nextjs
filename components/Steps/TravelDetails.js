@@ -13,7 +13,7 @@ class TravelDetails extends React.Component {
 
   render() {
     return <div>
-      <textarea rows='3' onChange={this.props.onChange}/>
+      <textarea rows='3' onChange={this.props.onChange} value={this.props.answer}/>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
     </div>;
   }

@@ -11,6 +11,7 @@ class Symptoms1 extends React.Component {
     super(props);
     this.state = {
       symptoms: [
+        'No',
         'Problem breathing',
         'Stiff neck',
         'Chest pain',
@@ -29,7 +30,11 @@ class Symptoms1 extends React.Component {
       <div>
         {this.state.symptoms.map((value, i) =>
           <label key={i} className={mainStyles.radioLabel}>
-            <input onChange={this.props.onChange} type='radio' name='symptoms1' value={value}/>
+            <input onChange={this.props.onChange}
+                   type='radio'
+                   name='symptoms1'
+                   value={value}
+                   checked={value === this.props.answer}/>
             <div>{value}</div>
           </label>,
         )}

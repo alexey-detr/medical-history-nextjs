@@ -36,7 +36,11 @@ class Travel extends React.Component {
       <div>
         {this.state.choices.map((value, i) =>
           <label key={i} className={mainStyles.radioLabel}>
-            <input type='radio' name='travel' onChange={this.props.onChange} value={value}/>
+            <input type='radio'
+                   name='travel'
+                   onChange={this.props.onChange}
+                   value={value}
+                   checked={value === this.props.answer}/>
             <div>{value}</div>
           </label>,
         )}
