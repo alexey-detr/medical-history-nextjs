@@ -41,7 +41,11 @@ const initialState = {
   },
 };
 
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
+  state = {
+    ...initialState,
+    ...state,
+  };
   switch (action.type) {
     case CHANGE_ANSWER: {
       const { code, question, answer } = action.payload;

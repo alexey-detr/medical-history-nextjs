@@ -38,7 +38,9 @@ const { COOKIE_KEY } = require('../constants/common');
     if (key) {
       const collection = ctx.db.collection('record');
       const record = await collection.findOne({ key });
-      answers = record.questionnaire;
+      if (record) {
+        answers = record.questionnaire;
+      }
     }
     await app.render(ctx.req, ctx.res, '/main', { ...ctx.query, answers });
     ctx.respond = false;
