@@ -19,10 +19,15 @@ class Travel extends React.Component {
         'Yes',
         'No',
       ],
+      error: '',
     };
   }
 
   onNext = () => {
+    if (!this.props.answer) {
+      this.setState({ ...this.state, error: 'You have to choose an answer' });
+      return false;
+    }
     if (this.props.answer === 'Yes') {
       this.props.dispatch({ type: SET_STEP, payload: { step: STEP_TRAVEL_DETAILS } });
     } else {
@@ -45,6 +50,11 @@ class Travel extends React.Component {
           </label>,
         )}
       </div>
+
+      {this.state.error && <div className={cardStyles.errorMessage}>
+        {this.state.error}
+      </div>}
+
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
     </div>;
   }

@@ -28,9 +28,11 @@ class Ssn extends React.Component {
              type='text'
              value={this.props.answer}
              onChange={this.props.onChange}/>
+
       {this.state.error && <div className={cardStyles.errorMessage}>
         {this.state.error}
       </div>}
+
       <button className={cardStyles.actionButton} onClick={this.onNext}>Confirm</button>
     </div>;
   }
