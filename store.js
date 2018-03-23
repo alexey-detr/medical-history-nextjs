@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  applyMiddleware,
   combineReducers,
   createStore,
 } from 'redux';
@@ -13,11 +12,14 @@ const reducer = combineReducers({
   answers: answersReducer,
 });
 
-export const initStore = (initialState) => {
+export const makeStore = (initialState, {query}) => {
+  if (query && query.answers) {
+    initialState = initialState || {};
+    initialState.answers = query.answers;
+  }
   return createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(
-    )),
+    composeWithDevTools(),
   );
 };

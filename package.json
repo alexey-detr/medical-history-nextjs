@@ -8,6 +8,8 @@
   "dependencies": {
     "@zeit/next-css": "^0.1.4",
     "axios": "^0.18.0",
+    "browser-cookies": "^1.2.0",
+    "cookie": "^0.3.1",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
     "koa-router": "^7.4.0",

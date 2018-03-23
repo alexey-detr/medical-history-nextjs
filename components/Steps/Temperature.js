@@ -11,9 +11,9 @@ class Temperature extends React.Component {
     super(props);
     const temperatures = [];
     for (let temperature = 35; temperature <= 42; temperature += 0.5) {
-      temperatures.push(temperature);
+      temperatures.push(formatTemperature(temperature));
     }
-    temperatures.push("Don't know");
+    temperatures.push('Don\'t know');
     this.state = {
       temperatures,
     };
@@ -28,12 +28,7 @@ class Temperature extends React.Component {
     return <div>
       <div>
         <select onChange={this.props.onChange} value={this.props.answer}>
-          {this.state.temperatures.map((value, i) => {
-            const temperatureString = formatTemperature(value);
-            return <option key={i} value={temperatureString}>
-              {temperatureString}
-            </option>;
-          })}
+          {this.state.temperatures.map((value, i) => <option key={i} value={value}>{value}</option>)}
         </select>
       </div>
       <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>

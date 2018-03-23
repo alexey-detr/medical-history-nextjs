@@ -4,7 +4,7 @@ function generateKey() {
   return crypto.randomBytes(10).toString('base64');
 }
 
-module.exports = async (ctx, next) => {
+module.exports = async ctx => {
   const {
     key,
     code,

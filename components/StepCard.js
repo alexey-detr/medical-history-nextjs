@@ -7,6 +7,8 @@ import {
   REMOVE_ANSWER_CHOICE,
 } from '../constants/actions';
 import axios from 'axios';
+import * as cookies from 'browser-cookies';
+import { COOKIE_KEY } from '../constants/common';
 
 export default (QuestionComponent) => {
 
@@ -37,11 +39,15 @@ export default (QuestionComponent) => {
       });
     };
 
-    onNext = () => {
+    onNext = async () => {
+      const key = cookies.get(COOKIE_KEY);
       axios.patch('/api/v1/record', {
+        key,
         code: this.props.code,
         question: this.props.label,
         answer: this.props.answer,
+      }).then(response => {
+        cookies.set(COOKIE_KEY, response.data.record.key);
       });
     };
 
@@ -54,7 +60,7 @@ export default (QuestionComponent) => {
           {this.props.label}
         </div>
         <div>
-          <QuestionComponent {...this.props} onChange={this.onChange} onRef={this.onRef} onNext={this.onNext}/>
+          <QuestionComponent {...this.props} onChange={this.onChange} onNext={this.onNext}/>
         </div>
       </div>;
     }

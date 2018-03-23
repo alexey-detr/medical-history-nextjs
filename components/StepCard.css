@@ -5,7 +5,19 @@
     display: inline-block;
     background-color: #fafafa;
     max-width: 400px;
+}
 
+@media only screen and (min-resolution: 1dppx) and (max-width: 320px),
+only screen and (min-resolution: 2dppx) and (max-width: 640px),
+only screen and (min-resolution: 3dppx) and (max-width: 1080px) {
+    .card {
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        box-shadow: none;
+        border-radius: 0;
+        display: block;
+    }
 }
 
 .title {
@@ -23,7 +35,7 @@
 
 .actionButton {
     font-size: 20px;
-    background: linear-gradient(to bottom, #ffffff, #f1ede1);
+    background: linear-gradient(to bottom, #ffffff, #f2f2f2);
     border-radius: 5px;
     padding: 4px 16px;
     display: block;

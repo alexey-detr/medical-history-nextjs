@@ -1,4 +1,4 @@
-module.exports = async (ctx, next) => {
+module.exports = async ctx => {
   const {
     ssn,
     key,
@@ -8,7 +8,7 @@ module.exports = async (ctx, next) => {
     ctx.throw(400, 'You have to specify ssn or key for this request.');
   }
   const collection = ctx.db.collection('record');
-  const query = ssn ? { 'questionnaire.ssn.answer': ssn } : { key };
+  const query = ssn ? { 'questionnaire.STEP_SSN.answer': ssn } : { key };
   const record = await collection.findOne(query);
 
   if (!record) {

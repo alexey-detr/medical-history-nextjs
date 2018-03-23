@@ -25,6 +25,14 @@ html, body {
     justify-content: center;
 }
 
+@media only screen and (min-resolution: 1dppx) and (max-width: 320px),
+only screen and (min-resolution: 2dppx) and (max-width: 640px),
+only screen and (min-resolution: 3dppx) and (max-width: 1080px) {
+    .mainContainer {
+        background: none;
+    }
+}
+
 input[type=text], textarea, select {
     font-size: 18px;
     padding: 4px;

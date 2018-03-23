@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
+const cookie = require('cookie');
 const next = require('next');
 
 const { MongoClient } = require('mongodb');
@@ -12,6 +13,8 @@ const handle = app.getRequestHandler();
 
 const recordGetAction = require('./controllers/record-get');
 const recordPatchAction = require('./controllers/record-patch');
+
+const { COOKIE_KEY } = require('../constants/common');
 
 (async () => {
   await app.prepare();
@@ -30,7 +33,14 @@ const recordPatchAction = require('./controllers/record-patch');
   router.patch('/api/v1/record', recordPatchAction);
 
   router.get('/', async ctx => {
-    await app.render(ctx.req, ctx.res, '/main', ctx.query);
+    const key = cookie.parse(ctx.req.headers.cookie || '')[COOKIE_KEY];
+    let answers;
+    if (key) {
+      const collection = ctx.db.collection('record');
+      const record = await collection.findOne({ key });
+      answers = record.questionnaire;
+    }
+    await app.render(ctx.req, ctx.res, '/main', { ...ctx.query, answers });
     ctx.respond = false;
   });
 

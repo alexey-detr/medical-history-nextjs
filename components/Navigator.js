@@ -37,7 +37,7 @@ class Navigator extends React.Component {
       case STEP_TRAVEL_DETAILS:
         return <TravelDetails code={code} title='Travel details' label='Where did you travel?'/>;
       case STEP_THANKS:
-        return <Thanks title='Completed' label='Thank you!'/>;
+        return <Thanks title='Completed' label='You have answered to all questions. Thank you!'/>;
       default:
         return null;
     }

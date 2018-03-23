@@ -26,7 +26,7 @@ class Fever extends React.Component {
   render() {
     return <div>
       <div>
-        <select onChange={this.props.onChange}>
+        <select onChange={this.props.onChange} value={this.props.answer}>
           {this.state.days.map((value, i) => {
             const daysString = formatDays(value);
             return <option key={i} value={daysString}>{daysString}</option>;

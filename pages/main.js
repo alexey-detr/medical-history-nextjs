@@ -1,17 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import withRedux from 'next-redux-wrapper';
-import { initStore } from '../store';
+import { makeStore } from '../store';
 import Head from 'next/head';
 import styles from '../styles/main.css';
 import Navigator from '../components/Navigator';
 
 class Main extends React.Component {
-  static getInitialProps({ store, query }) {
-    return {};
-  }
-
   render() {
     return <div>
       <Head>
@@ -27,8 +22,4 @@ class Main extends React.Component {
   }
 }
 
-Main.propTypes = {
-  model: PropTypes.object,
-};
-
-export default withRedux(initStore)(Main);
+export default withRedux(makeStore)(Main);
