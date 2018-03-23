@@ -28,7 +28,7 @@ const initialState = {
     answer: formatDays(0),
   },
   [STEP_SYMPTOMS1]: {
-    answer: 'No',
+    answer: '',
   },
   [STEP_SYMPTOMS2]: {
     answer: [],
