@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as cookies from 'browser-cookies';
@@ -11,8 +12,26 @@ import { COOKIE_KEY } from '../constants/common';
 
 import styles from './StepCard.css';
 
+export const stepCardImplementationPropTypes = {
+  title: PropTypes.string,
+  label: PropTypes.string,
+  answer: PropTypes.string,
+  code: PropTypes.string,
+  dispatch: PropTypes.func,
+  onChange: PropTypes.func,
+  onNext: PropTypes.func,
+};
+
 export default (QuestionComponent) => {
   class StepCard extends React.Component {
+    static defaultProps = {
+      title: '',
+      label: '',
+      answer: '',
+      code: 'unknown',
+      dispatch: () => {},
+    };
+
     onChange = (event) => {
       const { code, label } = this.props;
 
@@ -66,6 +85,14 @@ export default (QuestionComponent) => {
       );
     }
   }
+
+  StepCard.propTypes = {
+    title: PropTypes.string,
+    label: PropTypes.string,
+    answer: PropTypes.string,
+    code: PropTypes.string,
+    dispatch: PropTypes.func,
+  };
 
   const mapStateToProps = (state, props) => ({
     answer: state.answers[props.code] ? state.answers[props.code].answer : '',

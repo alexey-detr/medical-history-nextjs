@@ -1,8 +1,9 @@
 import React from 'react';
 
 import withRedux from 'next-redux-wrapper';
-import makeStore from '../store';
 import Head from 'next/head';
+
+import makeStore from '../store';
 import styles from '../styles/main.css';
 import Navigator from '../components/Navigator';
 

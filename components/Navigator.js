@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Enter from './Steps/Ssn';
 import Temperature from './Steps/Temperature';
@@ -20,6 +21,10 @@ import {
 } from '../constants/steps';
 
 class Navigator extends React.Component {
+  static defaultProps = {
+    step: 'unknown',
+  };
+
   getStep = () => {
     switch (this.props.step) {
       case STEP_SSN:
@@ -67,5 +72,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
+
+Navigator.propTypes = {
+  step: PropTypes.string,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigator);

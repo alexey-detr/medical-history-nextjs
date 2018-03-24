@@ -1,5 +1,5 @@
 import React from 'react';
-import StepCard from '../StepCard';
+import StepCard, { stepCardImplementationPropTypes } from '../StepCard';
 import { STEP_THANKS } from '../../constants/steps';
 import { SET_STEP } from '../../constants/actions';
 
@@ -38,5 +38,7 @@ class TravelDetails extends React.Component {
     );
   }
 }
+
+TravelDetails.propTypes = stepCardImplementationPropTypes;
 
 export default StepCard(TravelDetails);

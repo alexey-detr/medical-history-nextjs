@@ -1,5 +1,5 @@
 import React from 'react';
-import StepCard from '../StepCard';
+import StepCard, { stepCardImplementationPropTypes } from '../StepCard';
 import { SET_STEP } from '../../constants/actions';
 import { STEP_FEVER } from '../../constants/steps';
 import { formatTemperature } from '../../utils';
@@ -41,5 +41,7 @@ class Temperature extends React.Component {
     );
   }
 }
+
+Temperature.propTypes = stepCardImplementationPropTypes;
 
 export default StepCard(Temperature);
