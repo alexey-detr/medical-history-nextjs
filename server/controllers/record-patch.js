@@ -4,7 +4,7 @@ function generateKey() {
   return crypto.randomBytes(10).toString('base64');
 }
 
-module.exports = async ctx => {
+module.exports = async (ctx) => {
   const {
     key,
     code,
@@ -25,7 +25,6 @@ module.exports = async ctx => {
   let record = await collection.findOne({ key });
 
   if (!record) {
-
     // create a new record
     record = {
       key: generateKey(),
@@ -34,9 +33,7 @@ module.exports = async ctx => {
       },
     };
     collection.insertOne(record);
-
   } else {
-
     // update an existing record by key
     record.questionnaire[code] = answerObject;
     collection.updateOne({ key }, {
@@ -44,7 +41,6 @@ module.exports = async ctx => {
         [`questionnaire.${code}`]: answerObject,
       },
     });
-
   }
 
   ctx.response.body = {

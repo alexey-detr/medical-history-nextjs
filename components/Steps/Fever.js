@@ -24,17 +24,19 @@ class Fever extends React.Component {
   };
 
   render() {
-    return <div>
+    return (
       <div>
-        <select onChange={this.props.onChange} value={this.props.answer}>
-          {this.state.days.map((value, i) => {
-            const daysString = formatDays(value);
-            return <option key={i} value={daysString}>{daysString}</option>;
-          })}
-        </select>
+        <div>
+          <select onChange={this.props.onChange} value={this.props.answer}>
+            {this.state.days.map((value, i) => {
+              const daysString = formatDays(value);
+              return <option key={i} value={daysString}>{daysString}</option>;
+            })}
+          </select>
+        </div>
+        <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
       </div>
-      <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
-    </div>;
+    );
   }
 }
 

@@ -2,13 +2,13 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
 const cookie = require('cookie');
-const next = require('next');
+const nextJs = require('next');
 
 const { MongoClient } = require('mongodb');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = nextJs({ dev });
 const handle = app.getRequestHandler();
 
 const recordGetAction = require('./controllers/record-get');
@@ -32,7 +32,7 @@ const { COOKIE_KEY } = require('../constants/common');
   router.get('/api/v1/record', recordGetAction);
   router.patch('/api/v1/record', recordPatchAction);
 
-  router.get('/', async ctx => {
+  router.get('/', async (ctx) => {
     const key = cookie.parse(ctx.req.headers.cookie || '')[COOKIE_KEY];
     let answers;
     if (key) {
@@ -46,7 +46,7 @@ const { COOKIE_KEY } = require('../constants/common');
     ctx.respond = false;
   });
 
-  router.get('*', async ctx => {
+  router.get('*', async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
   });
@@ -58,6 +58,6 @@ const { COOKIE_KEY } = require('../constants/common');
 
   server.use(router.routes());
   server.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line no-console
   });
 })();

@@ -42,7 +42,7 @@ const initialState = {
 };
 
 export default (state = {}, action) => {
-  state = {
+  const mergedState = {
     ...initialState,
     ...state,
   };
@@ -50,7 +50,7 @@ export default (state = {}, action) => {
     case CHANGE_ANSWER: {
       const { code, question, answer } = action.payload;
       return {
-        ...state,
+        ...mergedState,
         [code]: {
           question,
           answer,
@@ -59,26 +59,28 @@ export default (state = {}, action) => {
     }
     case ADD_ANSWER_CHOICE: {
       const { code, question, answer } = action.payload;
+      const stateAnswer = mergedState[code] && mergedState[code].answer;
       return {
-        ...state,
+        ...mergedState,
         [code]: {
           question,
-          answer: state[code] && state[code].answer ? state[code].answer.concat([answer]) : [answer],
+          answer: stateAnswer ? stateAnswer.concat([answer]) : [answer],
         },
       };
     }
     case REMOVE_ANSWER_CHOICE: {
       const { code, question, answer } = action.payload;
-      const stateAnswer = state[code].answer.slice();
+      const stateAnswer = mergedState[code].answer.slice();
       stateAnswer.splice(stateAnswer.indexOf(answer), 1);
       return {
-        ...state,
+        ...mergedState,
         [code]: {
           question,
           answer: stateAnswer,
         },
       };
     }
+    default:
+      return mergedState;
   }
-  return state;
-}
+};

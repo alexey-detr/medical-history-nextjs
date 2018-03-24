@@ -1,8 +1,8 @@
 const withCss = require('@zeit/next-css');
 
 module.exports = withCss({
-    cssModules: true,
-    cssLoaderOptions: {
-        localIdentName: '[local]___[hash:base64:5]',
-    },
+  cssModules: true,
+  cssLoaderOptions: {
+    localIdentName: '[local]___[hash:base64:5]',
+  },
 });

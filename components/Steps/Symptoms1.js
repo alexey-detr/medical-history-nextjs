@@ -24,33 +24,41 @@ class Symptoms1 extends React.Component {
   onNext = () => {
     if (!this.props.answer) {
       this.setState({ ...this.state, error: 'You have to choose an answer' });
-      return false;
+      return;
     }
     this.props.dispatch({ type: SET_STEP, payload: { step: STEP_SYMPTOMS2 } });
     this.props.onNext();
   };
 
   render() {
-    return <div>
+    return (
       <div>
-        {this.state.symptoms.map((value, i) =>
-          <label key={i} className={mainStyles.radioLabel}>
-            <input onChange={this.props.onChange}
-                   type='radio'
-                   name='symptoms1'
-                   value={value}
-                   checked={value === this.props.answer}/>
-            <div>{value}</div>
-          </label>,
+        <div>
+          {this.state.symptoms.map((value, i) =>
+            (
+              <label htmlFor={`symptoms1-${i}`} key={i} className={mainStyles.radioLabel}>
+                <input
+                  id={`symptoms1-${i}`}
+                  onChange={this.props.onChange}
+                  type="radio"
+                  name="symptoms1"
+                  value={value}
+                  checked={value === this.props.answer}
+                />
+                <div>{value}</div>
+              </label>
+            ))}
+        </div>
+
+        {this.state.error && (
+          <div className={cardStyles.errorMessage}>
+            {this.state.error}
+          </div>
         )}
+
+        <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
       </div>
-
-      {this.state.error && <div className={cardStyles.errorMessage}>
-        {this.state.error}
-      </div>}
-
-      <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
-    </div>;
+    );
   }
 }
 

@@ -9,13 +9,13 @@ import cardStyles from '../StepCard.css';
 class Temperature extends React.Component {
   constructor(props) {
     super(props);
-    const temperatures = [];
-    for (let temperature = 35; temperature <= 42; temperature += 0.5) {
-      temperatures.push(formatTemperature(temperature));
+    const temps = [];
+    for (let temp = 35; temp <= 42; temp += 0.5) {
+      temps.push(formatTemperature(temp));
     }
-    temperatures.push('Don\'t know');
+    temps.push('Don\'t know');
     this.state = {
-      temperatures,
+      temperatures: temps,
     };
   }
 
@@ -25,14 +25,20 @@ class Temperature extends React.Component {
   };
 
   render() {
-    return <div>
+    return (
       <div>
-        <select onChange={this.props.onChange} value={this.props.answer}>
-          {this.state.temperatures.map((value, i) => <option key={i} value={value}>{value}</option>)}
-        </select>
+        <div>
+          <select onChange={this.props.onChange} value={this.props.answer}>
+            {this.state.temperatures.map((value, i) => (
+              <option key={i} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
       </div>
-      <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
-    </div>;
+    );
   }
 }
 

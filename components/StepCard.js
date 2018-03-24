@@ -1,19 +1,18 @@
 import React from 'react';
-import styles from './StepCard.css';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import * as cookies from 'browser-cookies';
 import {
   ADD_ANSWER_CHOICE,
   CHANGE_ANSWER,
   REMOVE_ANSWER_CHOICE,
 } from '../constants/actions';
-import axios from 'axios';
-import * as cookies from 'browser-cookies';
 import { COOKIE_KEY } from '../constants/common';
 
+import styles from './StepCard.css';
+
 export default (QuestionComponent) => {
-
   class StepCard extends React.Component {
-
     onChange = (event) => {
       const { code, label } = this.props;
 
@@ -46,23 +45,25 @@ export default (QuestionComponent) => {
         code: this.props.code,
         question: this.props.label,
         answer: this.props.answer,
-      }).then(response => {
+      }).then((response) => {
         cookies.set(COOKIE_KEY, response.data.record.key);
       });
     };
 
     render() {
-      return <div className={styles.card}>
-        <div className={styles.title}>
-          {this.props.title}
+      return (
+        <div className={styles.card}>
+          <div className={styles.title}>
+            {this.props.title}
+          </div>
+          <div className={styles.label}>
+            {this.props.label}
+          </div>
+          <div>
+            <QuestionComponent {...this.props} onChange={this.onChange} onNext={this.onNext} />
+          </div>
         </div>
-        <div className={styles.label}>
-          {this.props.label}
-        </div>
-        <div>
-          <QuestionComponent {...this.props} onChange={this.onChange} onNext={this.onNext}/>
-        </div>
-      </div>;
+      );
     }
   }
 
@@ -75,4 +76,4 @@ export default (QuestionComponent) => {
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(StepCard);
-}
+};

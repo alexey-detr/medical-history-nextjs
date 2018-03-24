@@ -25,21 +25,26 @@ class Symptoms1 extends React.Component {
   };
 
   render() {
-    return <div>
+    return (
       <div>
-        {this.state.symptoms.map((value, i) =>
-          <label key={i} className={mainStyles.checkboxLabel}>
-            <input onChange={this.props.onChange}
-                   type='checkbox'
-                   name='symptoms2'
-                   value={value}
-                   checked={this.props.answer.indexOf(value) !== -1}/>
-            <div>{value}</div>
-          </label>,
-        )}
+        <div>
+          {this.state.symptoms.map((value, i) => (
+            <label htmlFor={`symptoms2-${i}`} key={i} className={mainStyles.checkboxLabel}>
+              <input
+                id={`symptoms2-${i}`}
+                onChange={this.props.onChange}
+                type="checkbox"
+                name="symptoms2"
+                value={value}
+                checked={this.props.answer.indexOf(value) !== -1}
+              />
+              <div>{value}</div>
+            </label>
+          ))}
+        </div>
+        <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
       </div>
-      <button className={cardStyles.actionButton} onClick={this.onNext}>Next</button>
-    </div>;
+    );
   }
 }
 

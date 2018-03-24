@@ -20,41 +20,51 @@ import {
 } from '../constants/steps';
 
 class Navigator extends React.Component {
-  getStep = (code) => {
-    switch (code) {
+  getStep = () => {
+    switch (this.props.step) {
       case STEP_SSN:
-        return <Enter code={code} title='SSN' label='Please fill in your social security number to proceed'/>;
+        return (
+          <Enter
+            code={this.props.step}
+            title="SSN"
+            label="Please fill in your social security number to proceed"
+          />
+        );
       case STEP_TEMPERATURE:
-        return <Temperature code={code} title='Temperature' label='What was the last measured temperature?'/>;
+        return (
+          <Temperature
+            code={this.props.step}
+            title="Temperature"
+            label="What was the last measured temperature?"
+          />
+        );
       case STEP_FEVER:
-        return <Fever code={code} title='Fever' label='How long have you had a fever?'/>;
+        return <Fever code={this.props.step} title="Fever" label="How long have you had a fever?" />;
       case STEP_SYMPTOMS1:
-        return <Symptoms1 code={code} title='Symptoms' label='Do you have any of the following?'/>;
+        return <Symptoms1 code={this.props.step} title="Symptoms" label="Do you have any of the following?" />;
       case STEP_SYMPTOMS2:
-        return <Symptoms2 code={code} title='More symptoms' label='Do you have any of the following?'/>;
+        return <Symptoms2 code={this.props.step} title="More symptoms" label="Do you have any of the following?" />;
       case STEP_TRAVEL:
-        return <Travel code={code} title='Travel' label='Have you recently traveled abroad?'/>;
+        return <Travel code={this.props.step} title="Travel" label="Have you recently traveled abroad?" />;
       case STEP_TRAVEL_DETAILS:
-        return <TravelDetails code={code} title='Travel details' label='Where did you travel?'/>;
+        return <TravelDetails code={this.props.step} title="Travel details" label="Where did you travel?" />;
       case STEP_THANKS:
-        return <Thanks title='Completed' label='You have answered to all questions. Thank you!'/>;
+        return <Thanks title="Completed" label="You have answered to all questions. Thank you!" />;
       default:
         return null;
     }
   };
 
   render() {
-    return this.getStep(this.props.step);
+    return this.getStep();
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    step: state.navigator.step,
-  };
-};
+const mapStateToProps = state => ({
+  step: state.navigator.step,
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 

@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": false,
+    "react/no-array-index-key": false
+  }
+}

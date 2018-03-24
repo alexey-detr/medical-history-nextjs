@@ -1,6 +1,4 @@
 import React from 'react';
 import StepCard from '../StepCard';
 
-export default StepCard(() => {
-  return <div/>;
-});
+export default StepCard(() => <div />);
