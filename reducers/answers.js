@@ -19,7 +19,7 @@ import {
 
 const initialState = {
   [STEP_SSN]: {
-    answer: '811228-9874',
+    answer: '',
   },
   [STEP_TEMPERATURE]: {
     answer: formatTemperature(36.5),
