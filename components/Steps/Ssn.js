@@ -15,7 +15,7 @@ class Ssn extends React.Component {
 
   onNext = () => {
     if (!/^\d{6}-\d{4}$/.test(this.props.answer)) {
-      this.setState({ error: 'SSN has a wrong format' });
+      this.setState({ error: 'Wrong SSN format, must be like 811228-9874' });
       return;
     }
     this.props.dispatch({ type: SET_STEP, payload: { step: STEP_TEMPERATURE } });
